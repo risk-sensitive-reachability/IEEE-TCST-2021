@@ -32,21 +32,21 @@ Then execute the following command:
 git clone https://github.com/risk-sensitive-reachability/IEEE-TCST-2021
 ```
 
-![git clone animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TAC-2021/main/misc/git-clone.gif)
+![git clone animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TCST-2021/main/misc/gifs/git_clone.gif)
 
 ### Setup Your Matlab Workspace
 To setup your Matlab workspace: 
  - navigate to the parent directory containing __IEEE-TCST-2021__
  - from the left-hand file tree, right click on __IEEE-TCST-2021__ and select __Add To Path > Selected Folders and Subfolders__.
  
-  ![setup workspace animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TAC-2021/main/misc/add-to-working-path.gif)
+  ![setup workspace animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TCST-2021/main/misc/gifs/add-to-working-path.gif)
 
 ### Run Recursion
 The first major step in the analysis of a particular configuration and scenario combination is to call `Run_Recursion`. The first argument is a string identifying the scenario to run and the second argument is an integer identifying the simulator configuration to use. See the computational prerequisites column in the list of figures at the bottom of this page for examples. Note that running this will create files in the {Matlab_Working_Directory}/staging/ directory. These include both 'checkpoint' files that save results periodically and 'complete' files that are created once the entire recursion is finished. Once you have obtained a 'Transform_complete.mat' file you may run the Monte Carlo analysis. 
 
 __Note: this process can take a long time to complete, so operations are performed in parallel by default. A parallel pool will be started if none is already active. If you want to run the analysis using a limited number of cores, run parpool('local', number_of_cores) prior to starting this analysis.__
 
-![run Bellman recursion animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TAC-2021/main/misc/run-bellman.gif)
+![run Bellman recursion animation](https://raw.githubusercontent.com/risk-sensitive-reachability/IEEE-TCST-2021/main/misc/gifs/run_recursion.gif)
 
 ### Run Monte Carlo Analysis
 The second step in the analysis of a particular configuration and scenario combination is to call `Plot_Tradeoffs`. This assumes you have already called `Run_Recursion` and that process completed by producing a 'Transform_complete.mat' file. The first argument to `Plot_Tradeoffs` is a string identifying the scenario to run and the second argument is an integer identifying the simulator configuration to use. An optional third parameter specifies the initial condition; otherwise, default initial conditions will be run. Note that Plot_Tradeoffs will look for Monte Carlo results and use those if they are available. Otherwise, it will compute 10 million sample trajectories, which will take some time. You can speed up the workflow by running parts of it on multiple machines (i.e., by using the third parameter to constrain the analysis to a single initial condition per machine). See the computational prerequisites column in the list of figures at the bottom of this page for examples. Note that running this will create files in the {Matlab_Working_Directory}/staging/ directory.
